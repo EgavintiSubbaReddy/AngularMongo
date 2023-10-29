@@ -1,0 +1,32 @@
+<h1 style="background-color: rgb(10, 246, 167);">Angular Express</h1>
+<link rel="stylesheet" type="text/css" href="app.component.css">
+
+<h2>Enter user's data</h2><br>
+<form #userData="ngForm" (ngSubmit)='addUser(userData)'>
+  User Id <input type="text" name="userId" ngModel /><br>
+  Password <input type="password" name="password" ngModel /><br>
+  Email Id <input type="email" name="emailId" ngModel /><br>
+  <input type="submit" value="Add User" />&nbsp;&nbsp;
+  <input type="button" value="Get User" (click)="getAllUsers()" />
+</form>
+<br><label>{{ expresponse }}</label><br><br>
+<h2>User Data</h2>
+
+<table border="1">
+  <tr>
+    <th>User ID</th>
+    <th>Password</th>
+    <th>Email ID</th>
+    <th>Action</th> <!-- Added column for buttons -->
+  </tr>
+  <tr *ngFor="let user of userList">
+    <td>{{ user.userId }}</td>
+    <td>{{ user.password }}</td>
+    <td>{{ user.emailId }}</td>
+    <td>
+      <button (click)="updateUser(user)">Update</button> 
+      <button (click)="deleteUser(user.userId)">Delete</button> 
+    </td>
+  </tr>
+</table>
+<router-outlet></router-outlet>
